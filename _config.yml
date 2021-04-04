@@ -68,6 +68,11 @@ gitalk:
   repo: jcexk.github.io
   owner: jcexktrue
   createIssueManually: true
+
+#gitment
+comment_gitment_repo: jcexk.github.io
+comment_gitment_clientId: d4e18116a4a7d289f402
+comment_gitment_clientSecret: 79cb71fbe8fe946cf1e2bb9df4c507f40d115fea
   
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
 google_analytics: UA-193658493-1
