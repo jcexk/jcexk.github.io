@@ -66,8 +66,9 @@ gitalk:
   clientID: d4e18116a4a7d289f402
   clientSecret: 79cb71fbe8fe946cf1e2bb9df4c507f40d115fea
   repo: jcexk.github.io
-  owner: jcexk
-
+  owner: jcexktrue
+  createIssueManually: true
+  
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
 google_analytics: UA-193658493-1
 
