@@ -4,20 +4,15 @@ title: About
 permalink: /about/
 ---
 
-Hi，我是 lemon.
+Hi，我是 QI，目前是一枚iOS工程师。
 
 ### 技能
 
-Linux后端分布式高性能服务开发，差一点精通 C++，Golang 成长中，Python小玩具。
+Object-C/Swift/微信小程序/Flutter
 
-### 经历
-
-软件工程师(Software Engineer)，电子信息工程学士学位( Electronic and Information Engineering )，从事服务器软件后台开发工作多年，现就职腾讯（Tencent）公司。
-
-个人技术公众号「后端技术学堂」分享、记录、成长，欢迎扫码添加。
-
-![公众号二维码](https://upload-images.jianshu.io/upload_images/7842464-15f939ec039690f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
+### 座右铭
+不积跬步,无以至千里;
+不积小流,无以成江海。
 
 
 ### 版权声明
