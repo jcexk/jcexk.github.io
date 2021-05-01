@@ -17,7 +17,7 @@ author: jcexk
 * **无法确定程序的运行地址：**系统内存需要提供一块空闲区域才能保证程序能运行起来，这个区域是无法确定的(与上一点同理)，这给程序的编写造成了一定的麻烦，因为有些代码，在系统内存中的地址是固定的，就好比iOS系统动态库中的函数，其他APP调用同一个动态库函数，访问的都是同一个符号地址。
 
 为了解决以上问题，人们在程序与内存之间增加了一个中间层(**MMU:memory management unit**)，相当于前言中管理员角色，MMU是一种负责处理中央处理器（CPU）的内存访问请求的计算机硬件。它的功能包括虚拟地址到物理地址的转换（即虚拟内存管理）。MMU把程序进程给出的虚拟地址空间作为虚拟空间，同时也给程序分配相应大小的物理空间，然后通过MMU，映射到对应的物理地址上，这样就能做到了程序之间的地址隔绝。
-![图片来源：维基百科https://en.wikipedia.org/wiki/Memory_management_unit](https://raw.githubusercontent.com/jcexk/jcexk.github.io/master/images/pagefault/640px-MMU_principle_updated-1.png)
+![图片来源：维基百科https://en.wikipedia.org/wiki/Memory_management_unit](https://jcexk-1259114619.cos.ap-shanghai.myqcloud.com/pagefault/640px-MMU_principle_updated-1.png)
 * **虚拟地址**   
 地址范围的大小由CPU的位数决定，例如一个32位的CPU，它的地址范围是0 - 0xFFFFFFFF （4G)，而对于一个64位的CPU，它的地址范围为0 - 0xFFFFFFFFFFFFFFFF （16E)。这个范围就是我们的程序能够产生的地址范围，我们把这个地址范围称为虚拟地址空间，该空间中的某一个地址我们称之为虚拟地址；虚拟地址是虚拟的、并不真实存在的，每个程序都有自己的独立虚拟空间。
 * **物理地址**   
@@ -28,7 +28,7 @@ author: jcexk
 答案当然是可以的。
 ## 2. 分页：
 计算机会对虚拟内存地址空间（32位为4G）分页产生页（page），对物理内存地址空间（假设256M）分页产生页帧（page frame），这个页和页帧的大小是一样大的，所以呢，虚拟内存页的个数势必要大于物理内存页帧的个数。
-![-w488](https://raw.githubusercontent.com/jcexk/jcexk.github.io/master/images/pagefault/16185076041222.jpg)
+![-w488](https://jcexk-1259114619.cos.ap-shanghai.myqcloud.com/pagefault/16185076041222.jpg)
 
 ## 3. Page Fault
 在计算机上有一个页表（page table），就是映射虚拟内存页到物理内存页的，更确切的说是页号到页帧号的映射，而且是一对一的映射。但是问题来了，虚拟内存页的个数 > 物理内存页帧的个数，岂不是有些虚拟内存页的地址永远没有对应的物理内存地址空间？肯定不会的。
@@ -38,8 +38,8 @@ author: jcexk
 
 上面说的把地址空间拆封成页来管理，那每一页有多大呢？
 在真机上，每一页的大小为16K(每排书架能放16K本书)，通过打印vm_page_size.h中的`vm_page_size`可知
-![模拟器](https://raw.githubusercontent.com/jcexk/jcexk.github.io/master/images/pagefault/16188517575735.jpg)
-![真机](https://raw.githubusercontent.com/jcexk/jcexk.github.io/master/images/pagefault/16188517241921.jpg)
+![模拟器](https://jcexk-1259114619.cos.ap-shanghai.myqcloud.com/pagefault/16188517575735.jpg)
+![真机](https://jcexk-1259114619.cos.ap-shanghai.myqcloud.com/pagefault/16188517241921.jpg)
 ## 4. 懒加载分配物理空间
 在实际使用中，系统只会分配虚拟空间，而物理空间只有在使用到才会去分配
 ```
@@ -68,7 +68,7 @@ author: jcexk
     }
 }
 ```
-![-w1117](https://raw.githubusercontent.com/jcexk/jcexk.github.io/master/images/pagefault/16188471898816.jpg)
+![-w1117](https://jcexk-1259114619.cos.ap-shanghai.myqcloud.com/pagefault/16188471898816.jpg)
 根据打印结果可知，malloc前虚拟空间为4776MB，在创建内存100MB的字符指针时，虚拟空间增加了100MB，为4876MB，重点来了，在为前3MB个元素循环赋值时，物理地址也恰好增加了3MB，且物理空间与右侧memory工具数值一致，由此证明了前述观点。
 
 文章来源：《程序员的自我修养》，维基百科，https://en.wikipedia.org/wiki/Virtual_address_space
