@@ -12,11 +12,11 @@
 2. 一目了然：通过美化描述文件名，不再是难以辨认的'uuid+ext'格式
 3. 功能强大：支持查看ipa中描述文件和info.plist信息
 4. 结构清晰：通过树状结构查看描述文件包含的详细信息，如：创建时间、失效时间和包含的移动设备信息等
-<img width="856" alt="image" src="https://user-images.githubusercontent.com/28210342/111930937-09be0200-8af5-11eb-9d1c-c30bd2f2559b.png">
+<img width="856" alt="image" src="https://jcexk-1259114619.cos.ap-shanghai.myqcloud.com/tip1/111930937-09be0200-8af5-11eb-9d1c-c30bd2f2559b.png">
 
 5. 免费使用：而在App Store上类似功能的软件居然还要收费？？？
 6. 可排序和过滤：通过关键词筛选过滤找到想要的文件，也可以通过头部标签排序文件
-<img width="1214" alt="image" src="https://user-images.githubusercontent.com/28210342/111819633-8a290b00-891b-11eb-86fb-9f343acfb938.png">
+<img width="1214" alt="image" src="https://jcexk-1259114619.cos.ap-shanghai.myqcloud.com/tip1/111819633-8a290b00-891b-11eb-86fb-9f343acfb938.png">
 
 [话不多说，直接上菜](https://github.com/shaojiankui/ProfilesManager)
 手动复制：https://github.com/shaojiankui/ProfilesManager
