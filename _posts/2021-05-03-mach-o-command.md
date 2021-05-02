@@ -113,6 +113,38 @@ __Segment有两种类型
 
 > otool -v -s __TEXT __objc_methname RJEventLinkDemo
 
+* 获取所有类的地址
+
+> otool -v -s __DATA __objc_classlist RJEventLinkDemo
+
+* 获取所有引用到的类的地址
+
+> otool -v -s __DATA __objc_classrefs RJEventLinkDemo
+
+* 获取所有协议的地址
+
+> otool -v -s __DATA __objc_protolist RJEventLinkDemo
+
+* 获取所有引用到的协议的地址
+
+> otool -v -s __DATA __objc_protorefs RJEventLinkDemo
+
+* 获取所有引用到的方法的地址
+
+> otool -v -s __DATA __objc_selrefs RJEventLinkDemo
+
+Mach-o文件中__DATA __objc_classrefs段记录了引用类的地址，__DATA __objc_classlist段记录了所有类的地址，取差集可以得到未使用的类的地址，然后进行符号化，就可以得到未被引用的类信息。
+
+Objective-C 中的方法都会通过 objc_msgSend 来调用，而 objc_msgSend 在 Mach-O 文件里是通过 _objc_selrefs 这个 section 来获取 selector 这个参数的。
+所以，_objc_selrefs 里的方法一定是被调用了的。_objc_classrefs 里是被调用过的类， objc_superrefs 是调用过 super 的类（继承关系）。通过 _objc_classrefs 和 _objc_superrefs,我们就可以找出使用过的类和子类。
+注意需要人工二次确认
+JSONModel 里定义了未使用的协议会被判定为无用协议；
+如果子类使用了父类的方法，父类的这个方法不会被认为使用了；
+通过点的方式使用属性，该属性会被认为没有使用；
+使用 performSelector 方式调用的方法也检查不出来，比如 self performSelector:@selector(arrivalRefreshTime)；
+运行时声明类的情况检查不出来。比如通过 NSClassFromString 方式调用的类会被查出为没有使用的类，比如 layerClass = NSClassFromString(@“SMFloatLayer”)。
+还有以 [[self class] accessToken] 这样不指定类名的方式使用的类，会被认为该类没有被使用。像 UITableView 的自定义的 Cell 使用 registerClass，这样的情况也会认为这个 Cell 没有被使用。
+
 更多详情请在终端输入`otool`查看
 ![otool更多功能](https://jcexk-1259114619.cos.ap-shanghai.myqcloud.com/2021/05/03/16199794314400.jpg)
 命令行出处[ZhongXi](https://juejin.cn/post/6844903641573261326)，记录在此为了方便下次使用。
