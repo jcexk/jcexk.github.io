@@ -72,4 +72,5 @@ author: jcexk
 根据打印结果可知，malloc前虚拟空间为4776MB，在创建内存100MB的字符指针时，虚拟空间增加了100MB，为4876MB，重点来了，在为前3MB个元素循环赋值时，物理地址也恰好增加了3MB，且物理空间与右侧memory工具数值一致，由此证明了前述观点。
 
 文章来源：《程序员的自我修养》，维基百科，https://en.wikipedia.org/wiki/Virtual_address_space
+
 Apple官网介绍：https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/AboutMemory.html#//apple_ref/doc/uid/20001880-99100-TPXREF113
